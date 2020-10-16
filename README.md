@@ -1,2 +1,2 @@
-# Lowest-Common-Ancestry
-Task for CSU33012.
+# LCA Java
+Lowest Common Ancestry in Java
