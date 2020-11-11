@@ -52,15 +52,16 @@ public class DAG {
 
 	public int LCA(int v, int w) 
 	{
-		int commonAncestor = -1;
 		
 		if (!validVertex(w)|| !validVertex(v)) 
 		{
-			return commonAncestor;
+			return -1;
 		}
 
+		ArrayList<Integer> commonAncestor = new ArrayList<Integer>();
+		boolean hasCommonAncestor = false;
+		
 		DAG reversed = this.reverse();
-
 		ArrayList<Integer> searchV = reversed.search(v);
 		ArrayList<Integer> searchW = reversed.search(w);
 
@@ -70,12 +71,20 @@ public class DAG {
 			{
 				if (searchV.get(i) == searchW.get(j)) 
 				{
-					commonAncestor = searchV.get(i);
+					commonAncestor.add(searchV.get(i));
+					hasCommonAncestor = true;
 				}
 			}
 		}
 
-		return commonAncestor;
+		if (hasCommonAncestor) 
+		{
+			return commonAncestor.get(0);
+		} 
+		else 
+		{
+			return -1;
+		}
 	}
 	
 	//Reverses DAG to traverse through the vertices
